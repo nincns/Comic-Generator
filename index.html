@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comic Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header" id="app-header">
+            <div class="header-content">
+                <div class="logo">
+                    <span class="logo-icon" id="header-logo">🎨</span>
+                    <h1 id="header-title">Comic Generator</h1>
+                </div>
+                <p class="tagline" id="header-tagline">Erstelle deinen eigenen Comic!</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Baukasten Panel -->
+            <section class="builder-panel">
+                <h2>📦 Baukasten</h2>
+                
+                <!-- Katalog-Kategorien werden hier dynamisch geladen -->
+                <div id="catalog-container" class="catalog-container">
+                    <div class="loading">Lade Katalog...</div>
+                </div>
+
+                <!-- Caption Input -->
+                <div class="caption-section">
+                    <label for="caption-input">📝 Bildunterschrift:</label>
+                    <textarea id="caption-input" placeholder="Was soll unter dem Bild stehen?"></textarea>
+                </div>
+
+                <!-- Prompt Preview -->
+                <div class="prompt-preview">
+                    <h3>🔍 Prompt-Vorschau</h3>
+                    <div id="prompt-text" class="prompt-text">
+                        <em>Wähle Elemente aus dem Katalog...</em>
+                    </div>
+                </div>
+
+                <!-- Generate Button -->
+                <button id="generate-btn" class="generate-btn" disabled>
+                    <span class="btn-icon">🎨</span>
+                    <span class="btn-text">Comic-Kachel erstellen</span>
+                </button>
+            </section>
+
+            <!-- Preview/Output Panel -->
+            <section class="preview-panel">
+                <h2>🖼️ Comic-Strip</h2>
+                
+                <!-- Comic Strip Container -->
+                <div id="comic-strip" class="comic-strip">
+                    <div class="empty-state">
+                        <div class="empty-icon">🎬</div>
+                        <p>Dein Comic erscheint hier!</p>
+                        <p class="hint">Wähle links die Elemente und klicke auf "Erstellen"</p>
+                    </div>
+                </div>
+
+                <!-- Strip Actions -->
+                <div class="strip-actions">
+                    <div class="strip-actions-left">
+                        <button id="open-configurator" class="action-btn secondary" title="Einstellungen & Katalog bearbeiten">
+                            ⚙️ Configurator
+                        </button>
+                    </div>
+                    <div class="strip-actions-right">
+                        <button id="clear-strip-btn" class="action-btn secondary" disabled>
+                            🗑️ Strip leeren
+                        </button>
+                        <button id="download-strip-btn" class="action-btn primary" disabled>
+                            💾 Als Bild speichern
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Bubble Editor Modal -->
+        <div id="bubble-modal" class="modal hidden">
+            <div class="modal-backdrop"></div>
+            <div class="modal-content bubble-editor">
+                <div class="modal-header">
+                    <h3>💬 Sprechblase hinzufügen</h3>
+                    <button class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="bubble-preview-container" id="bubble-preview-container">
+                        <img id="bubble-preview-img" src="" alt="Vorschau">
+                        <svg id="bubble-tail-svg" class="bubble-tail-svg"></svg>
+                        <div id="bubble-overlay" class="bubble-overlay"></div>
+                    </div>
+                    <div class="bubble-controls">
+                        <div class="control-group">
+                            <label>Blasentyp:</label>
+                            <div class="bubble-type-selector">
+                                <button class="bubble-type active" data-type="speech">💬 Sprech</button>
+                                <button class="bubble-type" data-type="thought">💭 Denk</button>
+                                <button class="bubble-type" data-type="shout">💥 Ruf</button>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label for="bubble-text">Text:</label>
+                            <textarea id="bubble-text" placeholder="Was sagt/denkt die Figur?"></textarea>
+                        </div>
+                        <div class="control-group">
+                            <label>Platzierung: <span class="hint" id="placement-hint">Klicken &amp; ziehen im Bild</span></label>
+                            <div class="placement-instructions">
+                                <div class="instruction-step">
+                                    <span class="step-number">1</span>
+                                    <span>Klicke wo die Blase sein soll</span>
+                                </div>
+                                <div class="instruction-step">
+                                    <span class="step-number">2</span>
+                                    <span>Ziehe zur Person (für Pfeil)</span>
+                                </div>
+                                <div class="instruction-step">
+                                    <span class="step-number">3</span>
+                                    <span>Loslassen zum Platzieren</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Configurator Modal -->
+        <div id="catalog-editor-modal" class="modal hidden">
+            <div class="modal-backdrop"></div>
+            <div class="modal-content catalog-editor-content">
+                <div class="modal-header">
+                    <h3>⚙️ Configurator</h3>
+                    <button class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body catalog-editor-body">
+                    <!-- Kategorie-Tabs -->
+                    <div class="editor-tabs">
+                        <button class="editor-tab active" data-category="branding">🎨 Branding</button>
+                        <button class="editor-tab" data-category="protagonists">👥 Protagonisten</button>
+                        <button class="editor-tab" data-category="scene">📍 Szenen</button>
+                        <button class="editor-tab" data-category="action">🎬 Handlungen</button>
+                        <button class="editor-tab" data-category="style">🖌️ Stile</button>
+                        <button class="editor-tab" data-category="specials">✨ Extras</button>
+                    </div>
+
+                    <!-- Editor-Bereich -->
+                    <div class="editor-main">
+                        <!-- Branding Panel (wird per JS ein/ausgeblendet) -->
+                        <div id="branding-panel" class="branding-panel">
+                            <div class="branding-section">
+                                <h4>🏷️ Titel & Logo</h4>
+                                <div class="form-group">
+                                    <label for="branding-title">Titel:</label>
+                                    <input type="text" id="branding-title" placeholder="Comic Generator">
+                                </div>
+                                <div class="form-group">
+                                    <label for="branding-tagline">Tagline:</label>
+                                    <input type="text" id="branding-tagline" placeholder="Erstelle deinen eigenen Comic!">
+                                </div>
+                                <div class="form-group">
+                                    <label for="branding-logo">Logo (Emoji oder Text):</label>
+                                    <div class="logo-input-group">
+                                        <input type="text" id="branding-logo" placeholder="🎨" maxlength="10">
+                                        <button id="branding-logo-picker-btn" class="icon-picker-btn" type="button">😀</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="branding-section">
+                                <h4>🎨 Farbschema</h4>
+                                <div class="color-grid">
+                                    <div class="form-group">
+                                        <label for="color-primary">Primärfarbe:</label>
+                                        <div class="color-input-group">
+                                            <input type="color" id="color-primary" value="#00a5b5">
+                                            <input type="text" id="color-primary-hex" value="#00a5b5" maxlength="7">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="color-primary-dark">Primär Dunkel:</label>
+                                        <div class="color-input-group">
+                                            <input type="color" id="color-primary-dark" value="#008a98">
+                                            <input type="text" id="color-primary-dark-hex" value="#008a98" maxlength="7">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="color-accent">Akzentfarbe:</label>
+                                        <div class="color-input-group">
+                                            <input type="color" id="color-accent" value="#ff6b35">
+                                            <input type="text" id="color-accent-hex" value="#ff6b35" maxlength="7">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="color-bg-dark">Hintergrund:</label>
+                                        <div class="color-input-group">
+                                            <input type="color" id="color-bg-dark" value="#1a1a2e">
+                                            <input type="text" id="color-bg-dark-hex" value="#1a1a2e" maxlength="7">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="branding-section">
+                                <h4>🎭 Vorlagen</h4>
+                                <div class="preset-buttons">
+                                    <button class="preset-btn" data-preset="default">🎨 Standard</button>
+                                    <button class="preset-btn" data-preset="ocean">🌊 Ocean</button>
+                                    <button class="preset-btn" data-preset="forest">🌲 Forest</button>
+                                    <button class="preset-btn" data-preset="sunset">🌅 Sunset</button>
+                                    <button class="preset-btn" data-preset="night">🌙 Night</button>
+                                    <button class="preset-btn" data-preset="candy">🍬 Candy</button>
+                                </div>
+                            </div>
+                            
+                            <div class="branding-actions">
+                                <button id="apply-branding-btn" class="action-btn primary">✓ Anwenden</button>
+                                <button id="reset-branding-btn" class="action-btn secondary">↩️ Zurücksetzen</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Items-Liste (für Katalog-Tabs) -->
+                        <div id="catalog-panels" class="catalog-panels hidden">
+                            <div class="editor-items-panel">
+                                <div class="panel-header">
+                                    <h4>Elemente</h4>
+                                    <button id="add-item-btn" class="add-item-btn">➕ Neu</button>
+                                </div>
+                                <div id="editor-items-list" class="editor-items-list">
+                                    <!-- Items werden dynamisch geladen -->
+                                </div>
+                            </div>
+
+                            <!-- Detail-Editor -->
+                            <div class="editor-detail-panel">
+                                <div id="editor-detail-content" class="editor-detail-content">
+                                    <div class="editor-placeholder">
+                                        <span class="placeholder-icon">👈</span>
+                                        <p>Wähle ein Element zum Bearbeiten</p>
+                                        <p class="hint">oder erstelle ein neues mit dem ➕ Button</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Editor-Footer -->
+                    <div class="editor-footer">
+                        <div class="editor-footer-left">
+                            <button id="export-catalog-btn" class="action-btn secondary">
+                                📤 Exportieren
+                            </button>
+                            <button id="import-catalog-btn" class="action-btn secondary">
+                                📥 Importieren
+                            </button>
+                            <input type="file" id="import-file-input" accept=".json" style="display: none;">
+                        </div>
+                        <div class="editor-footer-right">
+                            <button id="reset-catalog-btn" class="action-btn danger">
+                                🔄 Zurücksetzen
+                            </button>
+                            <button id="save-catalog-btn" class="action-btn primary">
+                                💾 Änderungen speichern
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div id="loading-overlay" class="loading-overlay hidden">
+            <div class="loading-content">
+                <div class="loading-spinner"></div>
+                <p class="loading-text">Abbi malt dein Bild...</p>
+                <p class="loading-hint">Das kann bis zu 60 Sekunden dauern</p>
+            </div>
+        </div>
+
+        <!-- Toast Notifications -->
+        <div id="toast-container" class="toast-container"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

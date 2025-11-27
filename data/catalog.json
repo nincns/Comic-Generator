@@ -1,0 +1,272 @@
+{
+  "protagonists": {
+    "label": "Protagonisten",
+    "multiple": true,
+    "items": [
+      {
+        "id": "abbi",
+        "name": "Abbi",
+        "icon": "🦉",
+        "prompt": "Abbi, a colorful modern robot owl mascot with rounded proportions, large eyes with glowing turquoise-blue accents in the colors of Ernst-Abbe-Hochschule. Chrome and metallic surfaces, reflective panels, futuristic structural plates. Highly detailed, premium, friendly, and modern."
+      },
+      {
+        "id": "student_neutral",
+        "name": "Ersti (neutral)",
+        "icon": "🧑‍🎓",
+        "prompt": "A young first-year student with a neutral appearance, androgynous facial features, medium build, short slightly messy dark-blonde hair, casual modern clothing in neutral colors, a minimalistic backpack with a small blue accent. Youthful and relatable."
+      },
+      {
+        "id": "student_female",
+        "name": "Studentin",
+        "icon": "👩‍🎓",
+        "prompt": "A young female university student with friendly expression, medium-length brown hair, casual modern clothing, carrying a laptop bag. Approachable and studious appearance."
+      },
+      {
+        "id": "student_male",
+        "name": "Student",
+        "icon": "👨‍🎓",
+        "prompt": "A young male university student with friendly expression, short dark hair, casual hoodie and jeans, carrying a backpack. Relaxed and approachable appearance."
+      },
+      {
+        "id": "professor",
+        "name": "Professor",
+        "icon": "👨‍🏫",
+        "prompt": "A middle-aged professor with glasses, smart casual clothing, friendly but professional demeanor, holding papers or tablet."
+      },
+      {
+        "id": "group",
+        "name": "Studentengruppe",
+        "icon": "👥",
+        "prompt": "A diverse group of 3-4 university students of different genders and appearances, casually dressed, friendly and engaged with each other."
+      }
+    ]
+  },
+  "scene": {
+    "label": "Szene / Ort",
+    "multiple": false,
+    "items": [
+      {
+        "id": "campus_exterior",
+        "name": "Campus Außen",
+        "icon": "🏛️",
+        "prompt": "on the modern university campus of Ernst-Abbe-Hochschule Jena, contemporary architecture, green spaces, students walking in background"
+      },
+      {
+        "id": "lecture_hall",
+        "name": "Hörsaal",
+        "icon": "🎓",
+        "prompt": "inside a modern university lecture hall with tiered seating, presentation screen, academic atmosphere"
+      },
+      {
+        "id": "library",
+        "name": "Bibliothek",
+        "icon": "📚",
+        "prompt": "in a modern university library with bookshelves, study desks, natural lighting, quiet academic atmosphere"
+      },
+      {
+        "id": "mensa",
+        "name": "Mensa",
+        "icon": "🍽️",
+        "prompt": "in the university cafeteria (Mensa), modern interior, food counter visible, students eating and chatting"
+      },
+      {
+        "id": "lab",
+        "name": "Labor",
+        "icon": "🔬",
+        "prompt": "in a modern university laboratory with scientific equipment, computers, technical instruments"
+      },
+      {
+        "id": "computer_room",
+        "name": "PC-Pool",
+        "icon": "💻",
+        "prompt": "in a university computer lab with rows of monitors, modern workstations, students working"
+      },
+      {
+        "id": "outdoor_city",
+        "name": "Jena Stadt",
+        "icon": "🏙️",
+        "prompt": "in the city of Jena, Germany, with characteristic architecture, the JenTower visible in background"
+      },
+      {
+        "id": "dorm",
+        "name": "Wohnheim",
+        "icon": "🏠",
+        "prompt": "in a student dormitory room, cozy but small, desk with laptop, personal items, student life atmosphere"
+      }
+    ]
+  },
+  "action": {
+    "label": "Handlung",
+    "multiple": false,
+    "items": [
+      {
+        "id": "explaining",
+        "name": "Erklärt etwas",
+        "icon": "💡",
+        "prompt": "explaining something with a friendly gesture, pointing or showing"
+      },
+      {
+        "id": "walking",
+        "name": "Geht/Läuft",
+        "icon": "🚶",
+        "prompt": "walking together, in motion, casual pace"
+      },
+      {
+        "id": "studying",
+        "name": "Lernt/Arbeitet",
+        "icon": "📖",
+        "prompt": "studying or working, focused on books or laptop, concentrated expression"
+      },
+      {
+        "id": "talking",
+        "name": "Unterhält sich",
+        "icon": "💬",
+        "prompt": "having a friendly conversation, engaged dialogue, expressive gestures"
+      },
+      {
+        "id": "presenting",
+        "name": "Präsentiert",
+        "icon": "📊",
+        "prompt": "giving a presentation, standing confidently, gesturing toward screen or audience"
+      },
+      {
+        "id": "celebrating",
+        "name": "Feiert/Freut sich",
+        "icon": "🎉",
+        "prompt": "celebrating or showing joy, happy expression, triumphant pose"
+      },
+      {
+        "id": "confused",
+        "name": "Verwirrt/Ratlos",
+        "icon": "🤔",
+        "prompt": "looking confused or puzzled, scratching head, questioning expression"
+      },
+      {
+        "id": "helping",
+        "name": "Hilft jemandem",
+        "icon": "🤝",
+        "prompt": "helping or assisting, supportive gesture, friendly interaction"
+      },
+      {
+        "id": "arriving",
+        "name": "Kommt an",
+        "icon": "🚪",
+        "prompt": "arriving at the location, entering, first impression moment"
+      },
+      {
+        "id": "using_phone",
+        "name": "Am Handy",
+        "icon": "📱",
+        "prompt": "looking at smartphone, checking information, modern student life"
+      }
+    ]
+  },
+  "style": {
+    "label": "Stil",
+    "multiple": false,
+    "items": [
+      {
+        "id": "comic_modern",
+        "name": "Modern Comic",
+        "icon": "🎨",
+        "prompt": "Modern comic-style with clean lines, vibrant colors and soft gradients. Semi-realistic comic shading, subtle depth-of-field and light atmospheric haze. Chrome-like highlights on metallic surfaces. Consistent lighting, slightly warm tone. Suitable for 1:1 print. No text bubbles."
+      },
+      {
+        "id": "comic_classic",
+        "name": "Klassischer Comic",
+        "icon": "📰",
+        "prompt": "Classic comic book style with bold outlines, cel-shading, halftone dots pattern, vibrant primary colors. Clean and readable, suitable for print."
+      },
+      {
+        "id": "manga",
+        "name": "Manga/Anime",
+        "icon": "🇯🇵",
+        "prompt": "Japanese manga style with expressive eyes, dynamic lines, speed lines for motion, clean black and white with screen tones, dramatic angles."
+      },
+      {
+        "id": "watercolor",
+        "name": "Aquarell",
+        "icon": "🖌️",
+        "prompt": "Soft watercolor illustration style, gentle color bleeding, artistic and dreamy atmosphere, hand-painted feel, delicate details."
+      },
+      {
+        "id": "flat_design",
+        "name": "Flat Design",
+        "icon": "📐",
+        "prompt": "Modern flat design illustration, minimal shadows, geometric shapes, bold colors, clean vector-style graphics, corporate-friendly."
+      },
+      {
+        "id": "pixar",
+        "name": "3D Cartoon",
+        "icon": "🎬",
+        "prompt": "3D cartoon style similar to Pixar/Disney animation, smooth surfaces, expressive characters, cinematic lighting, high quality render."
+      }
+    ]
+  },
+  "specials": {
+    "label": "Extras",
+    "multiple": true,
+    "items": [
+      {
+        "id": "ar_elements",
+        "name": "AR-Elemente",
+        "icon": "📱",
+        "prompt": "with floating AR (augmented reality) interface elements, holographic displays, futuristic UI overlays"
+      },
+      {
+        "id": "thought_indicators",
+        "name": "Denkblasen-Platz",
+        "icon": "💭",
+        "prompt": "with clear empty space above characters for thought bubbles to be added later"
+      },
+      {
+        "id": "speech_indicators",
+        "name": "Sprechblasen-Platz",
+        "icon": "💬",
+        "prompt": "with clear empty space near characters' mouths for speech bubbles to be added later"
+      },
+      {
+        "id": "morning",
+        "name": "Morgens",
+        "icon": "🌅",
+        "prompt": "morning atmosphere, warm sunrise lighting, fresh start of day mood"
+      },
+      {
+        "id": "evening",
+        "name": "Abends",
+        "icon": "🌆",
+        "prompt": "evening atmosphere, warm sunset lighting, end of day mood"
+      },
+      {
+        "id": "night",
+        "name": "Nachts",
+        "icon": "🌙",
+        "prompt": "nighttime scene, artificial lighting, cozy indoor or dramatic outdoor atmosphere"
+      },
+      {
+        "id": "rain",
+        "name": "Regen",
+        "icon": "🌧️",
+        "prompt": "rainy weather, wet surfaces, umbrellas, moody atmosphere"
+      },
+      {
+        "id": "winter",
+        "name": "Winter",
+        "icon": "❄️",
+        "prompt": "winter season, snow, warm clothing, cozy winter atmosphere"
+      },
+      {
+        "id": "closeup",
+        "name": "Nahaufnahme",
+        "icon": "🔍",
+        "prompt": "close-up shot, focus on faces and expressions, intimate framing"
+      },
+      {
+        "id": "wide_shot",
+        "name": "Totale",
+        "icon": "🖼️",
+        "prompt": "wide establishing shot, showing full environment, characters smaller in frame"
+      }
+    ]
+  }
+}
